@@ -12,7 +12,6 @@ module.exports = {
         assetModuleFilename: 'assets/images/[hash][ext][query]'
     },
     mode: 'development',
-    watch: true,
     resolve: {
         extensions: ['.js'],
         alias: {
@@ -60,7 +59,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            inject: true,
+            inject: 'body',
             template: './public/index.html',
             filename: './index.html'
         }),
@@ -78,9 +77,10 @@ module.exports = {
         new Dotenv(),
     ],
     devServer: {
-        contentBase: path.join(__dirname, 'dist'),
+        static: path.join(__dirname, 'dist'),
         compress: true,
         historyApiFallback: true,
-        port: 5500
+        port: 3006,
+        open: true
     }
 }
